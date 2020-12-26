@@ -17,6 +17,12 @@ const App = () => {
         } else if (name && isEditing) {
             // deal with edit
         }
+        else {
+            //show alert
+            const newItem = { id: new Date().getTime.toString(), title: name };
+            setList([...list, newItem]);
+            setName('');
+        }
     }
 
 
@@ -32,7 +38,7 @@ const App = () => {
                     </button>
                 </div>
             </form>
-            <List />
+            <List items={list} />
             <button className="clear-btn">clear items</button>
         </div>
     </section>
