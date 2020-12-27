@@ -3,9 +3,18 @@ import './App.css';
 import List from './List';
 import Alert from './Alert';
 
+const getLocalStorage = () => {
+    let list = localStorage.getItem('list');
+    if (list) {
+        return JSON.parse(localStorage.getItem('list'));
+    } else {
+        return [];
+    }
+}
+
 const App = () => {
     const [name, setName] = useState('');
-    const [list, setList] = useState([]);
+    const [list, setList] = useState(getLocalStorage());
     const [isEditing, setIsEditing] = useState(false);
     const [editID, setEditID] = useState(null);
     const [alert, setAlert] = useState({ show: false, msg: '', type: '' });
@@ -57,7 +66,7 @@ const App = () => {
     }
 
     useEffect(() => {
-
+        localStorage.setItem('list', JSON.stringify(list));
     }, [list]);
     return <section className="section-center">
 
